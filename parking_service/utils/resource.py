@@ -131,6 +131,6 @@ def gzip(func):
         data, status, headers = sanitize_response(func(*args, **kwargs))
 
 
-class BaseResource(restful.Resource):
+class   BaseResource(restful.Resource):
     method_decorators = [handle_validation_exception, authenticate,
                          format_response]

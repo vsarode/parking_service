@@ -8,7 +8,7 @@ def numCPUs():
 
 
 bind = "0.0.0.0:2004"
-workers = 4
+workers = 2
 backlog = 2048
 worker_class = "gevent"
 debug = True
