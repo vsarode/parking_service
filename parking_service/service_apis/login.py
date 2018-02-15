@@ -10,7 +10,7 @@ class Login(BaseResource):
         request_data = request.get_json(force=True)
         response = post_login_handler.handle_post(request_data)
         if response:
-            return {"login": "success"}
+            return {"login": "Success"}
         else:
             return {'login': "Failure"}
 

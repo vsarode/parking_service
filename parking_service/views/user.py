@@ -3,6 +3,7 @@ from marshmallow import fields
 
 
 class UserView(SchemaRender):
-    username = fields.String()
+    email = fields.String()
+    name = fields.String()
     mobile_no = fields.String(dump_to="mobileNo")
-    
+    address = fields.String()

@@ -6,9 +6,11 @@ from parking_service.utils.exceptions import InternalServerError
 def create_user_object(data):
     db_session = db
     try:
-        user_object = User(username=data['username'],
+        user_object = User(name=data['name'],
+                           email=data['email'],
                            password=data['password'],
-                           mobile_no=data['mobileNo'])
+                           mobile_no=data['mobileNo'],
+                           address=data['address'])
         db_session.session.add(user_object)
         db_session.session.commit()
         return user_object
