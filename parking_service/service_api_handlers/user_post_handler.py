@@ -1,18 +1,14 @@
-from parking_service.db.models import User
-from parking_service.conf.init_app import db
+from parking_service.db.parking_models.models import User
 from parking_service.utils.exceptions import InternalServerError
 
 
 def create_user_object(data):
-    db_session = db
     try:
-        user_object = User(name=data['name'],
-                           email=data['email'],
-                           password=data['password'],
-                           mobile_no=data['mobileNo'],
-                           address=data['address'])
-        db_session.session.add(user_object)
-        db_session.session.commit()
+        user_object = User.objects.create(name=data['name'],
+                                          email=data['email'],
+                                          password=data['password'],
+                                          mobile_no=data['mobileNo'],
+                                          address=data['address'])
         return user_object
     except Exception as e:
         print e
