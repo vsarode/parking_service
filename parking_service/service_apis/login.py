@@ -1,18 +1,17 @@
-from flask.globals import request
-
+from flask import request, jsonify
+from flask_restful import Resource
 from parking_service.service_api_handlers import post_login_handler
-from parking_service.utils.resource import BaseResource
 from parking_service.views.user import UserView
 
 
-class Login(BaseResource):
+class Login(Resource):
     def post(self):
         request_data = request.get_json(force=True)
         view = UserView()
         response = post_login_handler.handle_post(request_data)
         if response:
-            return {"user": view.render(response)}
+            return jsonify(view.render(response))
         else:
-            return {'login': "Failure"}
+            return jsonify({'login': "Failure"})
 
     post.authenticated = False
