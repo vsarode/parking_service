@@ -1,12 +1,12 @@
 import django
+django.setup()
+
 from flask.ext import restful
 from flask.ext.cors import CORS
 from os.path import dirname, abspath
 
-from parking_service.db.parking_models.models import ParkingBlock
 from parking_service.service_apis.parking_block import ParkingBlockHandler
 
-django.setup()
 from parking_service.conf.config_logger_setup import setup_config_logger
 
 from parking_service.conf.init_app import app
