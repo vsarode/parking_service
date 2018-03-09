@@ -22,7 +22,8 @@ class ParkingBlock(models.Model):
     is_free = models.BooleanField(default=False)
 
 
-class ParkingEntry(models.Model):
+class BookingEntry(models.Model):
+    is_vehicle_present = models.BooleanField(default=False)
     parking_block = models.ForeignKey(ParkingBlock)
     user = models.ForeignKey(User)
     start_time = models.DateTimeField(default=datetime.now())

@@ -13,10 +13,10 @@ class Ground(Resource):
         view = GroundView()
         return view.render(ground_object)
 
-    def get(self, groundID=None):
+    def get(self, groundId=None):
         view = GroundView()
-        if groundID:
-            ground_object = ground_get_handler.get_ground_details(groundID)
+        if groundId:
+            ground_object = ground_get_handler.get_ground_details(groundId)
             if ground_object:
                 return {"ground": view.render(ground_object)}
         else:

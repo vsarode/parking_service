@@ -1,9 +1,14 @@
-from parking_service.service_api_handlers import block_get_handler
+from parking_service.db.parking_models.models import BookingEntry
+from parking_service.utils.exceptions import NotFoundException
 
 
-def update_booking_slot(request_data):
-    block_id = request_data['blockCode']
-    block_object = block_get_handler.get_single_block(block_id)
-    block_object.is_free = True
-    block_object.save()
+def update_booking_slot(bookId, data):
+    try:
+        booking_entry = BookingEntry.objects.get(id=bookId)
+    except:
+        raise NotFoundException(entity='Booking Entry')
 
+    if "isVehiclePresent" in data:
+        booking_entry.is_vehicle = data.get('isVehiclePresent')
+
+    return booking_entry

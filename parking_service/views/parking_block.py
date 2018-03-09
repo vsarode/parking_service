@@ -1,6 +1,6 @@
 from marshmallow import fields
 
-from parking_service.views.base_schema import SchemaRender, DateTimeEpoch
+from parking_service.views.base_schema import SchemaRender
 
 
 class ParkingBlockView(SchemaRender):

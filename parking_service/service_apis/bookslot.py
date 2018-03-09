@@ -1,10 +1,9 @@
 from flask import request
 
 from parking_service.service_api_handlers import book_block_post_handler, \
-    block_get_handler, booked_block_get_handler, booked_block_put_handler
+    booked_block_put_handler
 from parking_service.utils.book_block_utils import check_for_availability
-from parking_service.utils.exceptions import GenericCustomException, \
-    NotFoundException
+from parking_service.utils.exceptions import GenericCustomException
 from parking_service.utils.resource import BaseResource
 from parking_service.views.booking_entry import BookingView
 
@@ -22,20 +21,24 @@ class BookSlot(BaseResource):
             request_data)
         return {"bookedSlot": view.render(booking_block_object)}
 
-    def get(self, block_id):
-        view = BookingView()
-        block_object = block_get_handler.get_single_block(block_id)
-        if not block_object:
-            raise NotFoundException(entity='Block')
+    post.authenticated = False
 
-        block_objects = booked_block_get_handler.get_todays_booked_slot(
-            block_object)
-        return {"bookedSlot": [view.render(block_object) for block_object in
-                               block_objects]}
+    # def get(self, ):
+    #     view = BookingView()
+    #     block_object = block_get_handler.get_single_block(block_id)
+    #     if not block_object:
+    #         raise NotFoundException(entity='Block')
+    #
+    #     block_objects = booked_block_get_handler.get_todays_booked_slot(
+    #         block_object)
+    #     return {"bookedSlot": [view.render(block_object) for block_object in
+    #                            block_objects]}
 
-    def put(self, block_id):
+    def put(self, bookId):
         request_data = request.get_json()
-        block_object = block_get_handler.get_single_block(block_id)
+        view = BookingView()
         booked_slot_object = booked_block_put_handler.update_booking_slot(
-            block_object, request_data)
-        return True
+            bookId, request_data)
+        return {"bookedSlot": view.render(booked_slot_object)}
+
+    put.authenticated = False
