@@ -6,16 +6,14 @@ from parking_service.utils.exceptions import InternalServerError
 
 def book_the_parking_slot(data):
     block_id = data['blockId']
-    start_time = get_date_time_from_time_stamp(data['startTime'])
-    end_time = get_date_time_from_time_stamp(data['endTime'])
     parking_block_object = block_get_handler.get_single_block(block_id)
     user_object = User.objects.get(email=data['email'])
     try:
         parking_slot_object = BookingEntry.objects.create(
             parking_block=parking_block_object,
             user=user_object,
-            start_time=start_time,
-            end_time=end_time)
+            start_time=data['startTime'],
+            end_time=data['endTime'])
         parking_block_object.is_free = False
         parking_block_object.save()
         return parking_slot_object

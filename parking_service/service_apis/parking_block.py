@@ -1,5 +1,6 @@
 from parking_service.service_api_handlers import block_get_handler
 from parking_service.utils.resource import BaseResource
+from parking_service.views.booking_entry import BookingView
 from parking_service.views.parking_block import ParkingBlockView
 from parking_service.views.parking_block_bookings import ParkingBlockBookingView
 
@@ -15,7 +16,8 @@ class ParkingBlockHandler(BaseResource):
             block_object = block_get_handler.get_single_block(blockId)
 
             if block_object:
-                return {"parkingBlock": view.render(block_object)}
+                response = {"parkingBlock": view.render(block_object)}
+                return response
             else:
                 return {"success": False}
         else:

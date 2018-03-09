@@ -1,4 +1,6 @@
-from parking_service.db.parking_models.models import ParkingBlock
+from datetime import datetime
+
+from parking_service.db.parking_models.models import ParkingBlock, BookingEntry
 
 
 def get_single_block(blockId):
@@ -12,3 +14,5 @@ def get_single_block(blockId):
 def get_all_blocks():
     block_objects = ParkingBlock.objects.all()
     return block_objects
+
+
