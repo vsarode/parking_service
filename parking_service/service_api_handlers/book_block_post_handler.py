@@ -1,5 +1,6 @@
 from parking_service.db.parking_models.models import BookingEntry, User
 from parking_service.service_api_handlers import block_get_handler
+from parking_service.utils.book_block_utils import get_corrected_data
 from parking_service.utils.datetime_utils import get_date_time_from_time_stamp
 from parking_service.utils.exceptions import InternalServerError
 
@@ -8,6 +9,8 @@ def book_the_parking_slot(data):
     block_id = data['blockId']
     parking_block_object = block_get_handler.get_single_block(block_id)
     user_object = User.objects.get(email=data['email'])
+    data = get_corrected_data(data)
+    print(parking_block_object)
     try:
         parking_slot_object = BookingEntry.objects.create(
             parking_block=parking_block_object,

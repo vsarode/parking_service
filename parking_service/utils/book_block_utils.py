@@ -8,9 +8,9 @@ def get_corrected_data(data):
     start_minute = data['startMinute']
     end_hour = data['endHour']
     end_minute = data['endMinute']
-    data['startTime'] = datetime.now().replace(hour=start_hour,
-                                               minute=start_minute)
-    data['endTime'] = datetime.now().replace(hour=end_hour, minute=end_minute)
+    data['startTime'] = datetime.now().replace(hour=int(start_hour),
+                                               minute=int(start_minute))
+    data['endTime'] = datetime.now().replace(hour=int(end_hour), minute=int(end_minute))
     return data
 
 
