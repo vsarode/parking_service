@@ -1,6 +1,9 @@
 import django
 
+
 django.setup()
+from parking_service.scripts.update_booking_notification import send_notification
+
 from flask import Flask
 from flask.ext import restful
 from flask.ext.cors import CORS
@@ -35,7 +38,7 @@ api.add_resource(Ground, 'ground/', 'ground/<string:groundId>/')
 api.add_resource(ParkingBlockHandler, 'parkingblock/',
                  'parkingblock/<string:blockId>/')
 api.add_resource(BookSlot, 'book/', 'book/<string:bookId>/')
-
+# send_notification()
 
 if __name__ == '__main__':
     app.run(host="0.0.0.0", port=2004, debug=True)
