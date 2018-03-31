@@ -14,6 +14,8 @@ class User(models.Model):
 
 class Parking(models.Model):
     parking_code = models.CharField(max_length=124, primary_key=True)
+    langitude = models.CharField(max_length=124, null=True)
+    latitude = models.CharField(max_length=124, null=True)
 
 
 class ParkingBlock(models.Model):

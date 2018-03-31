@@ -12,19 +12,14 @@ class Migration(migrations.Migration):
     ]
 
     operations = [
-        migrations.AddField(
-            model_name='parkingentry',
-            name='is_vehicle_present',
-            field=models.BooleanField(default=False),
-        ),
         migrations.AlterField(
-            model_name='parkingentry',
+            model_name='bookingentry',
             name='start_time',
-            field=models.DateTimeField(default=datetime.datetime(2018, 3, 9, 8, 31, 24, 459895)),
+            field=models.DateTimeField(default=datetime.datetime(2018, 3, 31, 2, 55, 45, 501343)),
         ),
         migrations.AlterField(
             model_name='user',
             name='created_on',
-            field=models.DateTimeField(default=datetime.datetime(2018, 3, 9, 8, 31, 24, 458327)),
+            field=models.DateTimeField(default=datetime.datetime(2018, 3, 31, 2, 55, 45, 499967)),
         ),
     ]

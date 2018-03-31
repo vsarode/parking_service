@@ -12,9 +12,20 @@ class Migration(migrations.Migration):
 
     operations = [
         migrations.CreateModel(
+            name='BookingEntry',
+            fields=[
+                ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
+                ('is_vehicle_present', models.BooleanField(default=False)),
+                ('start_time', models.DateTimeField(default=datetime.datetime(2018, 3, 31, 2, 55, 21, 13708))),
+                ('end_time', models.DateTimeField()),
+            ],
+        ),
+        migrations.CreateModel(
             name='Parking',
             fields=[
                 ('parking_code', models.CharField(max_length=124, serialize=False, primary_key=True)),
+                ('langitude', models.CharField(max_length=124, null=True)),
+                ('latitude', models.CharField(max_length=124, null=True)),
             ],
         ),
         migrations.CreateModel(
@@ -26,15 +37,6 @@ class Migration(migrations.Migration):
             ],
         ),
         migrations.CreateModel(
-            name='ParkingEntry',
-            fields=[
-                ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
-                ('start_time', models.DateTimeField(default=datetime.datetime(2018, 2, 15, 21, 20, 33, 994772))),
-                ('end_time', models.DateTimeField()),
-                ('parking_block', models.ForeignKey(to='parking_models.ParkingBlock')),
-            ],
-        ),
-        migrations.CreateModel(
             name='User',
             fields=[
                 ('email', models.CharField(max_length=124, serialize=False, primary_key=True)),
@@ -42,11 +44,16 @@ class Migration(migrations.Migration):
                 ('password', models.CharField(max_length=256)),
                 ('mobile_no', models.CharField(max_length=256)),
                 ('address', models.CharField(max_length=256, null=True)),
-                ('created_on', models.DateTimeField(default=datetime.datetime(2018, 2, 15, 21, 20, 33, 992947))),
+                ('created_on', models.DateTimeField(default=datetime.datetime(2018, 3, 31, 2, 55, 21, 12271))),
             ],
         ),
         migrations.AddField(
-            model_name='parkingentry',
+            model_name='bookingentry',
+            name='parking_block',
+            field=models.ForeignKey(to='parking_models.ParkingBlock'),
+        ),
+        migrations.AddField(
+            model_name='bookingentry',
             name='user',
             field=models.ForeignKey(to='parking_models.User'),
         ),
