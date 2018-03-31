@@ -27,7 +27,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'parkingDb',
         'USER': 'root',
-        'PASSWORD': 'as2d2p',
+        'PASSWORD': 'root',
         'HOST': 'localhost',
         'PORT': '',
     }

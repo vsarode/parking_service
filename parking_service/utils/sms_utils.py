@@ -6,7 +6,6 @@ password = "G8533A"
 
 
 def send_sms(receiver, message):
-    import pdb; pdb.set_trace()
     q = way2sms.sms(username, password)
     q.send(unicode(receiver), message)
     n = q.msgSentToday()
@@ -14,4 +13,4 @@ def send_sms(receiver, message):
 
 
 if __name__ == "__main__":
-    send_sms("9637552245", "hi")
+    send_sms("9657964535", "hi")

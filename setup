@@ -1,0 +1,14 @@
+sudo apt-get install mysql-server
+sudo apt-get install python-pip
+pip install -r requirements.txt
+
+
+export DJANGO_SETTINGS_MODULE=parking_service.db.settings.local;export PYTHONPATH=$PWD
+
+### To create ground and blocks #######
+python parking_service/scripts/create_groud_and_blocks.py
+
+
+#### To run ###
+python parking_service/conf/service_app.py
+
