@@ -2,7 +2,6 @@ import django
 
 
 django.setup()
-from parking_service.scripts.update_booking_notification import send_notification
 
 from flask import Flask
 from flask.ext import restful
