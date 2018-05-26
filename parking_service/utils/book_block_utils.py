@@ -18,8 +18,10 @@ def get_corrected_data(data):
 
 
 def check_for_availability(data):
+
     data = get_corrected_data(data)
     block_id = data['blockId']
-    parking_block = BookingEntry.objects.filter(
-        parking_block__block_code=block_id, data['startTime'] > start_time__gte and data['endTime'] < end_time__lte)
-    return parking_block
+    bookingEntries = BookingEntry.objects.filter(parking_block__block_code=block_id)
+    e = [entry for entry in bookingEntries if entry.startTime <
+         data['startTime'] or entry.endTime > data['endTime']]
+    return e
