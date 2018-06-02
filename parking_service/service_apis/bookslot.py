@@ -2,7 +2,7 @@ from flask import request
 
 from parking_service.service_api_handlers import book_block_post_handler, \
     booked_block_put_handler
-from parking_service.utils.book_block_utils import check_for_availability
+from parking_service.utils.book_block_utils import is_available
 from parking_service.utils.exceptions import GenericCustomException
 from parking_service.utils.resource import BaseResource
 from parking_service.views.booking_entry import BookingView
@@ -12,8 +12,8 @@ class BookSlot(BaseResource):
     def post(self):
         view = BookingView()
         request_data = request.get_json()
-        is_not_available = check_for_availability(request_data)
-        if is_not_available:
+        is_slot_available = is_available(request_data)
+        if not is_slot_available:
             raise GenericCustomException(
                 message="Block is not free in given time range !!")
 
