@@ -17,6 +17,8 @@ from parking_service.service_apis.userdata import UserData
 from parking_service.service_apis.ping import Ping
 from parking_service.service_apis.ground import Ground
 from parking_service.service_apis.bookslot import BookSlot
+from parking_service.service_apis.vehical_present import MarkVehicalPresence
+
 
 
 app = Flask(__name__)
@@ -37,6 +39,9 @@ api.add_resource(Ground, 'ground/', 'ground/<string:groundId>/')
 api.add_resource(ParkingBlockHandler, 'parkingblock/',
                  'parkingblock/<string:blockId>/')
 api.add_resource(BookSlot, 'book/', 'book/<string:bookId>/')
+api.add_resource(MarkVehicalPresence, 'vehiclepresence/<string:blockId>/')
+
+
 # send_notification()
 
 if __name__ == '__main__':

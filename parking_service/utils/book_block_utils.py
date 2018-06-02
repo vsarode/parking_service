@@ -27,15 +27,16 @@ def in_range(booking_entry, time):
 def is_available(data):
     data = get_corrected_data(data)
     block_id = data['blockId']
-    is_slot_available = True
+    is_slot_available = is_block_available(block_id, data['startTime'], data['endTime'])
+    return is_slot_available
+
+
+def is_block_available(block_id, start, end):
     booking_entries = BookingEntry.objects.filter(
         parking_block__block_code=block_id)
-
+    is_slot_available = True
     for obj in booking_entries:
-
-        if in_range(obj, data['startTime']) or in_range(obj, data[
-            'endTime']):
+        if in_range(obj, start) or in_range(obj, end):
             is_slot_available = False
             break
-
     return is_slot_available

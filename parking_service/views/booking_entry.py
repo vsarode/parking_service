@@ -7,6 +7,7 @@ from parking_service.views.user import UserView
 
 class BookingView(SchemaRender):
     parking_block = fields.Nested(ParkingBlockView, dump_to='parkingBlock')
+    is_vehicle_present = fields.Boolean(dump_to='isVehiclePresent')
     user = fields.Nested(UserView)
     start_hour = fields.Method('get_start_hour', dump_to="startHour")
     start_minute = fields.Method('get_start_minute', dump_to="startMinute")

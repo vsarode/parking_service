@@ -1,5 +1,6 @@
 from flask import request
 
+from parking_service.db.parking_models.models import BookingEntry
 from parking_service.service_api_handlers import book_block_post_handler, \
     booked_block_put_handler
 from parking_service.utils.book_block_utils import is_available
@@ -23,16 +24,18 @@ class BookSlot(BaseResource):
 
     post.authenticated = False
 
-    # def get(self, ):
-    #     view = BookingView()
-    #     block_object = block_get_handler.get_single_block(block_id)
-    #     if not block_object:
-    #         raise NotFoundException(entity='Block')
-    #
-    #     block_objects = booked_block_get_handler.get_todays_booked_slot(
-    #         block_object)
-    #     return {"bookedSlot": [view.render(block_object) for block_object in
-    #                            block_objects]}
+    def get(self, bookId=None):
+        data = request.args
+        booking_entries = BookingEntry.objects.filter(parking_block__block_code=bookId)
+        # view = BookingView()
+        # block_object = block_get_handler.get_single_block(block_id)
+        # if not block_object:
+        #     raise NotFoundException(entity='Block')
+        #
+        # block_objects = booked_block_get_handler.get_todays_booked_slot(
+        #     block_object)
+        # return {"bookedSlot": [view.render(block_object) for block_object in
+        #                        block_objects]}
 
     def put(self, bookId):
         request_data = request.get_json()

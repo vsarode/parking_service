@@ -12,6 +12,7 @@ class ParkingBlockHandler(BaseResource):
         pass
 
     def get(self, blockId=None):
+
         if blockId:
             view = ParkingBlockBookingView()
             block_object = block_get_handler.get_single_block(blockId)
