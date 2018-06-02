@@ -12,3 +12,12 @@ python parking_service/scripts/create_groud_and_blocks.py
 #### To run ###
 python parking_service/conf/service_app.py
 
+
+
+Update vehicle presence :
+
+<ipAddress>:2004/vehiclepresence/<blockCode>/
+
+example :
+
+http://192.168.33.40:2004/parkingService/vehiclepresence/B2/
